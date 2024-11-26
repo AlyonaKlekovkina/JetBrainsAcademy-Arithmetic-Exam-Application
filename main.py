@@ -24,10 +24,25 @@ def simple_calculation():
     return result
 
 
-task = generate_task()
-print(task[0], task[2], task[1])
-reply = input()
-if int(task[3]) == int(reply):
-    print('Right!')
-else:
-    print('Wrong!')
+def check_reply():
+    while True:
+        reply = input()
+        try:
+            return int(reply)
+        except ValueError:
+            print('Incorrect format.')
+
+
+count_right = 0
+for i in range(5):
+    task = generate_task()
+    print(task[0], task[2], task[1])
+    reply = check_reply()
+    if int(task[3]) == reply:
+        print('Right!')
+        count_right += 1
+    if int(task[3]) != reply:
+        print('Wrong!')
+    i += 1
+print('Your mark is {}/5.'.format(count_right))
+
